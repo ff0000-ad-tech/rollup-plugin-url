@@ -82,6 +82,15 @@ describe("rollup-plugin-url", () => {
         ])
       )
   )
+
+  it("should use filename w/o extension w/ 'forImageManager' option", () => {
+    run("./fixtures/png.js", 10, "/foo/bar/", true, true)
+      .then(
+        () => Promise.all([
+          assertOutput(`var png$1 = "png";\nexport default png$1;`),
+        ])
+      )
+  })
 })
 
 function promise(fn, ...args) {
@@ -90,7 +99,7 @@ function promise(fn, ...args) {
       err ? reject(err) : resolve(res)))
 }
 
-function run(input, limit, publicPath = "", emitFiles = true) {
+function run(input, limit, publicPath = "", emitFiles = true, forImageManager = false) {
   const plugin = url({limit, publicPath, emitFiles})
   return rollup({
     input,
