@@ -60,6 +60,14 @@ Optional. Type: `boolean`
 
 The `emitFiles` option is used to run the plugin as you normally would but prevents any files being emitted. This is useful for when you are using rollup to emit both a client side and server side bundle.
 
+### forImageManager
+
+Optional. Type: `boolean`
+
+Option for accessing FBA-stored assets (see [fba-compiler](https://github.com/ff0000-ad-tech/fba-compiler)) with [ad-control/ImageManager.get()](https://github.com/ff0000-ad-tech/ad-control/blob/master/lib/ImageManager.js)
+
+Importing image returns the regular name of the original file without the extension. For example, importing `./sample.png` will return `sample`.
+
 # License
 
 LGPL-3.0
