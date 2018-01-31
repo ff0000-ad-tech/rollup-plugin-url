@@ -41,16 +41,13 @@ function url() {
             buffer = _ref2[1];
 
         var data = void 0;
-        if (limit && stats.size > limit || limit === 0) {
-          var filename = void 0;
-          if (forImageManager) {
-            var parsedPath = path.parse(id);
-            data = filename = parsedPath.name;
-          } else {
-            var hash = crypto.createHash("sha1").update(buffer).digest("hex").substr(0, 16);
-            filename = hash + path.extname(id);
-            data = "" + publicPath + filename;
-          }
+        if (forImageManager) {
+          var parsedPath = path.parse(id);
+          copies[id] = data = parsedPath.name;
+        } else if (limit && stats.size > limit || limit === 0) {
+          var hash = crypto.createHash("sha1").update(buffer).digest("hex").substr(0, 16);
+          var filename = hash + path.extname(id);
+          data = "" + publicPath + filename;
           copies[id] = filename;
         } else {
           var mimetype = mime.lookup(id);
