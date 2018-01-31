@@ -17,7 +17,8 @@ export default function url(options = {}) {
     include = defaultInclude,
     exclude,
     publicPath = "",
-    emitFiles = true
+    emitFiles = true,
+    forImageManager = false,
   } = options
   const filter = createFilter(include, exclude)
 
@@ -34,12 +35,18 @@ export default function url(options = {}) {
       ]).then(([stats, buffer]) => {
         let data
         if ((limit && stats.size > limit) || limit === 0) {
-          const hash = crypto.createHash("sha1")
-            .update(buffer)
-            .digest("hex")
-            .substr(0, 16)
-          const filename = hash + path.extname(id)
-          data = `${publicPath}${filename}`
+          let filename
+          if (forImageManager) {
+            const parsedPath = path.parse(id)
+            data = filename = parsedPath.name;
+          } else {
+            const hash = crypto.createHash("sha1")
+              .update(buffer)
+              .digest("hex")
+              .substr(0, 16)
+            filename = hash + path.extname(id)
+            data = `${publicPath}${filename}`
+          }
           copies[id] = filename
         } else {
           const mimetype = mime.lookup(id)
