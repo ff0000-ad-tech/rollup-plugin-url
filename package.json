@@ -1,5 +1,5 @@
 {
-  "name": "rollup-plugin-url",
+  "name": "@ff0000-ad-tech/rollup-plugin-url",
   "version": "1.3.0",
   "description": "Inline import files as data-URIs, or copy them to output",
   "main": "dist/index.js",
@@ -13,11 +13,13 @@
     "babel-preset-es2015": "^6.5.0",
     "babel-register": "^6.4.3",
     "mocha": "^2.4.5",
+    "np": "^2.19.0",
     "rimraf": "^2.5.1",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2"
   },
   "scripts": {
+    "pub": "npm np",
     "test": "mocha --compilers js:babel-register",
     "pretest": "npm run build",
     "build": "rollup -c",
