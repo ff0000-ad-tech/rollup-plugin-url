@@ -1,8 +1,5 @@
 {
-  "name": "@ff0000-ad-tech/rollup-plugin-url",
-  "publishConfig": {
-    "access": "public"
-  },
+  "name": "rollup-plugin-url",
   "version": "1.3.0",
   "description": "Inline import files as data-URIs, or copy them to output",
   "main": "dist/index.js",
